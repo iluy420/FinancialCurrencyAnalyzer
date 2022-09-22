@@ -1,0 +1,18 @@
+﻿using Consts;
+using DataBase.Core.Models;
+using System.Data.Entity;
+
+namespace DataBase.Contexts
+{
+    public class DataBaseContext : DbContext
+    {
+        public DataBaseContext()
+            : base(ConstsDataBase.CONNECTION_STRING)
+        {
+        }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Сurrency> Сurrencys { get; set; }
+    }
+}
