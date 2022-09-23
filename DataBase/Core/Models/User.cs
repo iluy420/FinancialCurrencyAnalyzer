@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using DataBase.Core.Enums;
 
 namespace DataBase.Core.Models
 {
@@ -56,10 +55,9 @@ namespace DataBase.Core.Models
 
         /// <summary>
         /// адрес электронной почты пользователя подтвержден
-        /// Yes - 1, No - 0
         /// </summary>
         [Required]
-        public EmailСonfirmedEnum EmailConfirmed { get; set; }
+        public bool EmailConfirmed { get; set; }
         #endregion
 
         #region ФИО

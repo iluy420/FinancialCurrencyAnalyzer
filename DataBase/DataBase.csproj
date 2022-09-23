@@ -54,14 +54,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\DataBaseContext.cs" />
-    <Compile Include="Core\Enums\EmailСonfirmedEnum.cs" />
     <Compile Include="Core\Models\Subscription.cs" />
     <Compile Include="Core\Models\User.cs" />
     <Compile Include="Core\Models\Сurrency.cs" />
+    <Compile Include="Migrations\202209231741449_InitialCreate.cs" />
+    <Compile Include="Migrations\202209231741449_InitialCreate.designer.cs">
+      <DependentUpon>202209231741449_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209231748513_EmailConfirmedСhanged.cs" />
+    <Compile Include="Migrations\202209231748513_EmailConfirmedСhanged.designer.cs">
+      <DependentUpon>202209231748513_EmailConfirmedСhanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Bases\" />
+    <Folder Include="Core\Enums\" />
     <Folder Include="Core\Extensions\" />
     <Folder Include="Core\Views\" />
   </ItemGroup>
@@ -74,6 +83,14 @@
       <Project>{61dec687-d936-440c-a890-7297fd0c37db}</Project>
       <Name>Consts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202209231741449_InitialCreate.resx">
+      <DependentUpon>202209231741449_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209231748513_EmailConfirmedСhanged.resx">
+      <DependentUpon>202209231748513_EmailConfirmedСhanged.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
