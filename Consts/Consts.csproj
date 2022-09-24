@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConstsDataBase.cs" />
+    <Compile Include="ConstsEmail.cs" />
     <Compile Include="EmailDomainConts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

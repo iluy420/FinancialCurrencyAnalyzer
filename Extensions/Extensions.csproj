@@ -44,7 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkingWithEmail.cs" />
     <Compile Include="WorkingWithPasswords.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Consts\Consts.csproj">
+      <Project>{61dec687-d936-440c-a890-7297fd0c37db}</Project>
+      <Name>Consts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

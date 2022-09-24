@@ -8,9 +8,9 @@ namespace Consts
 {
     public class EmailDomainConts
     {
-        public const string Gmail = "@gmail.com";
-        public const string Yandex = "@yandex.ru";
-        public const string Mail = "@mail.ru";
-        public const string Yahoo = "@yahoo.com";
+        public const string GMAIL = "@gmail.com";
+        public const string YANDEX = "@yandex.ru";
+        public const string MAIL = "@mail.ru";
+        public const string YAHOO = "@yahoo.com";
     }
 }
