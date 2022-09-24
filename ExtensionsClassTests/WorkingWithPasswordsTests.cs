@@ -61,5 +61,60 @@ namespace ExtensionsClassTests
             //пустая строка
             Assert.IsFalse(WorkingWithPasswords.PasswordStrengthCheck(""));
         }
+
+        /// <summary>
+        /// Тест метода создания случайного пароля указанной длинны
+        /// </summary>
+        [TestMethod]
+        public void TestMethod_GetGeneratePassword()
+        {
+            string password = WorkingWithPasswords.GetGeneratePassword(10);
+            Assert.IsTrue(WorkingWithPasswords.PasswordStrengthCheck(password) && password.Length == 10);
+            
+            password = WorkingWithPasswords.GetGeneratePassword(9);
+            Assert.IsTrue(WorkingWithPasswords.PasswordStrengthCheck(password) && password.Length == 9);
+            
+            password = WorkingWithPasswords.GetGeneratePassword(8);
+            Assert.IsTrue(WorkingWithPasswords.PasswordStrengthCheck(password) && password.Length == 8);
+
+            password = WorkingWithPasswords.GetGeneratePassword(7);
+            Assert.IsTrue(WorkingWithPasswords.PasswordStrengthCheck(password) && password.Length == 7);
+
+            password = WorkingWithPasswords.GetGeneratePassword(6);
+            Assert.IsTrue(WorkingWithPasswords.PasswordStrengthCheck(password) && password.Length == 6);
+
+            password = WorkingWithPasswords.GetGeneratePassword(4);
+            Assert.IsTrue(password.Length == 4);
+            password = WorkingWithPasswords.GetGeneratePassword(3);
+            Assert.IsTrue(password.Length == 3);
+            password = WorkingWithPasswords.GetGeneratePassword(2);
+            Assert.IsTrue(password.Length == 3);
+            password = WorkingWithPasswords.GetGeneratePassword(1);
+            Assert.IsTrue(password.Length == 3);
+            password = WorkingWithPasswords.GetGeneratePassword(0);
+            Assert.IsTrue(password.Length == 3);
+        }
+
+        /// <summary>
+        /// Тест метода создания случайного буквенно-цифрового ключа указанной длинны
+        /// </summary>
+        [TestMethod]
+        public void TestMethod_GetGenerateAlphanumericKey()
+        {
+            string key = WorkingWithPasswords.GetGenerateAlphanumericKey(10);
+            Assert.IsTrue(key.Length == 10);
+
+            key = WorkingWithPasswords.GetGenerateAlphanumericKey(15);
+            Assert.IsTrue(key.Length == 15);
+
+            key = WorkingWithPasswords.GetGenerateAlphanumericKey(3);
+            Assert.IsTrue(key.Length == 3);
+
+            key = WorkingWithPasswords.GetGenerateAlphanumericKey(0);
+            Assert.IsTrue(key.Length == 0);
+
+            key = WorkingWithPasswords.GetGenerateAlphanumericKey(8);
+            Assert.IsTrue(key.Length == 8);
+        }
     }
 }

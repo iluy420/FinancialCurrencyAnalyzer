@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows;
+using System;
 
 namespace Extensions
 {
@@ -40,7 +40,7 @@ namespace Extensions
                 return false;
             }
 
-            if (password.Length <= 6)
+            if (password.Length < 6)
             {
                 MessageBox.Show("пароль слишком короткий, минимум 6 символов");
                 return false;
@@ -102,7 +102,72 @@ namespace Extensions
 
             return true;
         }
-        
+
+        #endregion
+
+        #region Генерация паролей и ключей
+
+        /// <summary>
+        /// Создает случайный пароль указанной длинны 
+        /// Не меньше 3 символов!
+        /// </summary>
+        /// <returns>Случайный пароль указанной длинны</returns>
+        public static string GetGeneratePassword(uint lenghtPassword)
+        {
+            char[] upperCase = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+            char[] lowerCase = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+            char[] numbers = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            char[] specialСharacters = new char[] { '_', '-', '!'};
+
+            char[] total = upperCase.Concat(lowerCase).ToArray();
+
+            string result = "";
+
+            Random rnd = new Random();
+            result += total[rnd.Next(total.Length)];
+            result += numbers[rnd.Next(numbers.Length)];
+            result += specialСharacters[rnd.Next(specialСharacters.Length)];
+
+            if (lenghtPassword > 3)
+            {
+                total.Concat(numbers).Concat(specialСharacters).ToArray();
+
+                total = Enumerable.Repeat<int>(0, total.Length).Select(i => total[rnd.Next(total.Length)]).ToArray();
+                total = Enumerable.Repeat<int>(0, total.Length).Select(i => total[rnd.Next(total.Length)]).ToArray();
+
+                char[] chars = Enumerable.Repeat<int>(0,(int)lenghtPassword - 3).Select(i => total[rnd.Next(total.Length)]).ToArray();
+                result += new string(chars);
+            }
+
+            result = new string(result.ToCharArray().OrderBy(x => Guid.NewGuid()).ToArray());
+
+            return result;
+        }
+
+        /// <summary>
+        /// Создает случайный буквенно-цифровой ключ указанной длинны 
+        /// </summary>
+        /// <returns>Случайный буквенно-цифровой ключ указанной длинны</returns>
+        public static string GetGenerateAlphanumericKey(uint lenghtKey)
+        {
+            char[] upperCase = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+            char[] lowerCase = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+            char[] numbers = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+            char[] total = upperCase.Concat(lowerCase).Concat(numbers).ToArray();
+
+            Random rnd = new Random();
+
+            total = Enumerable.Repeat<int>(0, total.Length).Select(i => total[rnd.Next(total.Length)]).ToArray();
+            total = Enumerable.Repeat<int>(0, total.Length).Select(i => total[rnd.Next(total.Length)]).ToArray();
+
+            char[] chars = Enumerable.Repeat<int>(0, (int)lenghtKey).Select(i => total[rnd.Next(total.Length)]).ToArray();
+            string result = new string(chars);
+            result = new string(result.ToCharArray().OrderBy(x => Guid.NewGuid()).ToArray());
+
+            return result;
+        }
+
         #endregion
 
     }
