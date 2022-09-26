@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinancialCurrencyAnalyzerDesktopСlient.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Closing="WindowsClosing"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="500" MinWidth="700"
+        Title="MainWindow" Height="500" Width="700">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Frame x:Name="MainFrame" 
+               NavigationUIVisibility="Hidden"
+               Grid.Row="1"
+               Source="../Pages/Login.xaml"
+               Navigated="MainFrame_OnNavigeted"/>
         
+        <TextBlock x:Name="DateTimeNow"  
+                   Grid.Row="2"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,25,0"
+                   VerticalAlignment="Center"/>
+        
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="Back" 
+                    Grid.Row="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="25,0,0,0"
+                    Content="Назад" 
+                    Click="BackClick"
+                    ToolTip="Вернуться назад"/>
+        </StackPanel>
     </Grid>
 </Window>

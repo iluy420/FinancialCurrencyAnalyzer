@@ -6,10 +6,10 @@ namespace SendingAnEmailTestProject
     {
         static void Main(string[] args)
         {
-            WorkingWithEmail.EmailRegistration(
-                "FinancialCurrencyAnalyzerTest1@gmail.com",
-                "Юзверь",
-                WorkingWithPasswords.GetGenerateAlphanumericKey(10));
+            //WorkingWithEmail.EmailRegistration(
+            //    "FinancialCurrencyAnalyzerTest1@gmail.com",
+            //    "Юзверь",
+            //    WorkingWithPasswords.GetGenerateAlphanumericKey(10));
             
         }
     }

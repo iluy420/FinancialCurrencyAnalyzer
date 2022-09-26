@@ -1,0 +1,95 @@
+﻿<Page x:Class="FinancialCurrencyAnalyzerDesktopСlient.Pages.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinancialCurrencyAnalyzerDesktopСlient.Pages"
+      mc:Ignorable="d" 
+      Title="Login">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Target="{Binding ElementName=TextBoxLogin}"
+               Content="Логин"
+               Grid.Column="1" 
+               Grid.ColumnSpan="2"
+               Grid.Row="1"
+               VerticalAlignment="Bottom"/>
+
+        <TextBox x:Name="TextBoxLogin"
+                 Grid.Column="1" 
+                 Grid.ColumnSpan="2"
+                 Grid.Row="2"
+                 ToolTip ="Введите логин"/>
+
+        <Label Target="{Binding ElementName=Password}"
+               Content="Пароль"
+               Grid.Column="1" 
+               Grid.ColumnSpan="2"
+               Grid.Row="3"
+               VerticalAlignment="Bottom"/>
+
+        <PasswordBox x:Name="Password"
+                     PasswordChar="X"
+                     Grid.Column="1" 
+                     Grid.ColumnSpan="2"
+                     Grid.Row="4"
+                     ToolTip ="Введите пароль"/>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <Label Target="{Binding ElementName=RememberData}"
+               Content="Запомнить логин и пароль?"/>
+            <CheckBox x:Name="RememberData"
+                      VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="225"/>
+                    <ColumnDefinition Width="225"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="LoginButton"
+                    Content="Войти"
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    Click="LoginButton_Click"
+                    ToolTip ="Войти"/>
+
+                <Button x:Name="RegistrationButton"
+                    Content="Зарегистрироваться"
+                    HorizontalAlignment="Stretch"
+                    ToolTip ="Зарегистрироваться в FinancialCurrencyAnalyzer"
+                    Grid.Column="1" Click="RegistrationButton_Click"/>
+            </Grid>
+           
+            
+        </StackPanel>
+        
+    </Grid>
+</Page>
