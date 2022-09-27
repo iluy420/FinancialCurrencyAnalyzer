@@ -1,9 +1,9 @@
-﻿<Page x:Class="FinancialCurrencyAnalyzerDesktopСlient.Pages.Login"
+﻿<Page x:Class="FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin.Login"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FinancialCurrencyAnalyzerDesktopСlient.Pages"
+      xmlns:local="clr-namespace:FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin"
       mc:Ignorable="d" 
       Title="Login">
     <Grid >
@@ -24,7 +24,7 @@
             <RowDefinition Height="35"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-
+        
         <Label Target="{Binding ElementName=TextBoxLogin}"
                Content="Логин"
                Grid.Column="1" 

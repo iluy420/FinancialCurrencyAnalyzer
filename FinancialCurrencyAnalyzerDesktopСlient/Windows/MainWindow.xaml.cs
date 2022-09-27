@@ -50,10 +50,22 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
         private void MainFrame_OnNavigeted(object sender, NavigationEventArgs e)
         {
             if (!(e.Content is Page page)) return;
+            //настройки заголовка окна
             Title = $"FinancialCurrencyAnalyzer - {page.Title}";
 
-            if (page is Pages.Login) Back.Visibility = Visibility.Hidden;
+            //настройки кнопки "назад"
+            if (page is Pages.RegistrationAndLogin.Login
+                || page is Pages.Menus.MainMenu
+                || page is Pages.RegistrationAndLogin.RegistrationUser)
+            {
+                Back.Visibility = Visibility.Hidden;
+            }
             else Back.Visibility = Visibility.Visible;
+
+            //настройки размера окна
+            if(page is Pages.RegistrationAndLogin.Login) this.WindowState = WindowState.Normal;
+            else this.WindowState = WindowState.Maximized;
+
         }
     }
 }

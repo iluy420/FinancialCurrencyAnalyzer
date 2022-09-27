@@ -2,7 +2,7 @@
 {
     public class UserLoginSettings
     {
-        public string Login { get; }
+        public string Login { get; set; }
         public string Password { get; set; }
 
         public UserLoginSettings(string login, string password)

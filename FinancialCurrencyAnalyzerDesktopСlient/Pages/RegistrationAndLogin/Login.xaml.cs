@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using FinancialCurrencyAnalyzerDesktopСlient.Models.Settings;
-using FinancialCurrencyAnalyzerDesktopСlient.Properties;
+using FinancialCurrencyAnalyzerDesktopСlient.MyGUIElements;
 using Newtonsoft.Json;
 
 
 
-namespace FinancialCurrencyAnalyzerDesktopСlient.Pages
+namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
 {
     public partial class Login : Page
     {
@@ -35,16 +33,12 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string login = TextBoxLogin.Text;
-            string password = Password.Password;
-            bool isRememberDat = RememberData.IsChecked.Value;
-            TextBoxLogin.Clear();///тут чтото не так!
+            if(UserLogin(TextBoxLogin.Text, Password.Password, RememberData.IsChecked.Value))
+            {
+                NavigationService.RemoveBackEntry();// удаляем страницу login из журнала навигации 
 
-            Password.Clear();
-            RememberData.IsChecked = false;
-            UserLogin(login, password, isRememberDat);
-
-            
+                NavigationService?.Navigate(new Menus.MainMenu());//переход в главное меню
+            }
         }
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
@@ -84,17 +78,12 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages
                     string json = JsonConvert.SerializeObject(userSettings);
 
                     writer.WriteLine(json);
-                    writer.Close();
+
                     MessageBox.Show("Пароль и логин записаны");
-
-                }
-                
+                    writer.Close();
+                } 
             }
-
-            NavigationService?.Navigate(new MainMenu());//переход в главное меню
-
             return true;
-
         }
     }
 }

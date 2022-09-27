@@ -72,15 +72,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Login.xaml">
+    <Page Include="Pages\RegistrationAndLogin\EmailConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MainMenu.xaml">
+    <Page Include="Pages\RegistrationAndLogin\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RegistrationUser.xaml">
+    <Page Include="Pages\Menus\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RegistrationAndLogin\RegistrationUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,13 +97,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Settings\UserLoginSettings.cs" />
-    <Compile Include="Pages\Login.xaml.cs">
+    <Compile Include="MyGUIElements\MyTextBox.cs" />
+    <Compile Include="Pages\RegistrationAndLogin\EmailConfirmation.xaml.cs">
+      <DependentUpon>EmailConfirmation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegistrationAndLogin\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MainMenu.xaml.cs">
+    <Compile Include="Pages\Menus\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RegistrationUser.xaml.cs">
+    <Compile Include="Pages\RegistrationAndLogin\RegistrationUser.xaml.cs">
       <DependentUpon>RegistrationUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">

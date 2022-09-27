@@ -13,16 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FinancialCurrencyAnalyzerDesktopСlient.Pages
+namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
 {
-    /// <summary>
-    /// Логика взаимодействия для RegistrationUser.xaml
-    /// </summary>
     public partial class RegistrationUser : Page
     {
         public RegistrationUser()
         {
             InitializeComponent();
+        }
+
+        private void ButtunRegistration_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

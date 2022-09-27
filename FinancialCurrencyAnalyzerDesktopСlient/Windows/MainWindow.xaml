@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Closing="WindowsClosing"
         WindowStartupLocation="CenterScreen"
-        MinHeight="500" MinWidth="700"
-        Title="MainWindow" Height="500" Width="700">
+        MinHeight="500" MinWidth="800"
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -19,7 +19,7 @@
         <Frame x:Name="MainFrame" 
                NavigationUIVisibility="Hidden"
                Grid.Row="1"
-               Source="../Pages/Login.xaml"
+               Source="../Pages/RegistrationAndLogin/Login.xaml"
                Navigated="MainFrame_OnNavigeted"/>
         
         <TextBlock x:Name="DateTimeNow"  

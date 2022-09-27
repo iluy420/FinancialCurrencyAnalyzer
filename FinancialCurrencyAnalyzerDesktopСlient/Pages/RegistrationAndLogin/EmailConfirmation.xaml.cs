@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FinancialCurrencyAnalyzerDesktopСlient.Pages
+namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
 {
     /// <summary>
-    /// Логика взаимодействия для MainMenu.xaml
+    /// Логика взаимодействия для EmailConfirmation.xaml
     /// </summary>
-    public partial class MainMenu : Page
+    public partial class EmailConfirmation : Page
     {
-        public MainMenu()
+        public EmailConfirmation()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using System;
 
 namespace SendingAnEmailTestProject
 {
@@ -7,10 +8,10 @@ namespace SendingAnEmailTestProject
         static void Main(string[] args)
         {
             //WorkingWithEmail.EmailRegistration(
-            //    "FinancialCurrencyAnalyzerTest1@gmail.com",
+            //    "alekseevm2003@gmail.com",
             //    "Юзверь",
             //    WorkingWithPasswords.GetGenerateAlphanumericKey(10));
-            
+
         }
     }
 }
