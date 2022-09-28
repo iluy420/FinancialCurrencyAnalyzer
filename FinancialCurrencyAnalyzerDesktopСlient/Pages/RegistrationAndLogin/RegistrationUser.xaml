@@ -10,7 +10,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="170"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="150"/>
@@ -68,7 +68,7 @@
 
         <!--#region Отчество-->
         <Label Target="{Binding ElementName=TextBoxPatronymic}"
-               Content="Отчество"
+               Content="Отчество (необязательно)"
                Grid.Column="1" 
                Grid.Row="3"
                VerticalAlignment="Center"/>
@@ -123,13 +123,13 @@
         <!--#endregion-->
 
         <!--#region Email-->
-        <Label Target="{Binding ElementName=TextBoxEmail}"
+        <Label Target="{Binding ElementName=TextBoxEmailName}"
                Content="Email"
                Grid.Column="1" 
                Grid.Row="7"
                VerticalAlignment="Center"/>
 
-        <TextBox x:Name="TextBoxEmail"
+        <TextBox x:Name="TextBoxEmailName"
                  Grid.Column="2" 
                  Grid.ColumnSpan="2"
                  Grid.Row="7"

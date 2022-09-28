@@ -96,8 +96,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\NavigatorExtensions.cs" />
     <Compile Include="Models\Settings\UserLoginSettings.cs" />
-    <Compile Include="MyGUIElements\MyTextBox.cs" />
     <Compile Include="Pages\RegistrationAndLogin\EmailConfirmation.xaml.cs">
       <DependentUpon>EmailConfirmation.xaml</DependentUpon>
     </Compile>
@@ -143,6 +143,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Consts\Consts.csproj">
+      <Project>{61dec687-d936-440c-a890-7297fd0c37db}</Project>
+      <Name>Consts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataBase\DataBase.csproj">
       <Project>{034b9031-3aa6-4beb-94c4-4a0424295c13}</Project>
       <Name>DataBase</Name>

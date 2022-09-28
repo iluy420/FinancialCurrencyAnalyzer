@@ -54,13 +54,13 @@
                 Grid.ColumnSpan="2"
                 Grid.Row="3"
                 Content="Подтвердить"
-                ToolTip ="Подтвердить почту"/>
+                ToolTip ="Подтвердить почту" Click="ButtonConfirmation_Click"/>
 
         <Button x:Name="ButtonPass"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Grid.Row="4"
                 Content="Подтвердить позже"
-                ToolTip="Пропустить подтверждение почты"/>
+                ToolTip="Пропустить подтверждение почты" Click="ButtonPass_Click"/>
     </Grid>
 </Page>

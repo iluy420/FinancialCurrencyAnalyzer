@@ -1,8 +1,10 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using DataBase.Contexts;
+using Extensions;
 using FinancialCurrencyAnalyzerDesktopСlient.Models.Settings;
-using FinancialCurrencyAnalyzerDesktopСlient.MyGUIElements;
 using Newtonsoft.Json;
 
 
@@ -54,19 +56,27 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
                 return false;
             }
 
-            //using (var db = new DataBaseContext())
-            //{
-            //    password = WorkingWithPasswords.GetHashSHA1(password);
-            //    var user = db.Users.AsNoTracking().FirstOrDefault(u => u.Login == login
-            //                && u.Password == password);
-            //    if (user == null)
-            //    {
-            //        MessageBox.Show("Пользователь с такими данными не найден!");
-            //        return false;
-            //    }
+            using (var db = new DataBaseContext())
+            {
+                try
+                {
+                    password = WorkingWithPasswords.GetHashSHA1(password);
+                    var user = db.Users.AsNoTracking().FirstOrDefault(u => u.Login == login
+                                && u.Password == password);
+                    if (user == null)
+                    {
+                        MessageBox.Show("Пользователь с такими данными не найден!");
+                        return false;
+                    }
 
-            //    MessageBox.Show("Пользователь успешно найден!");
-            //}
+                    MessageBox.Show("Пользователь успешно найден!");
+                }
+                catch
+                {
+                    MessageBox.Show("Проверьте подключение к интернету!");
+                    return false;
+                }
+            }
 
             if (isRememberData == true) {
                 //запоминаем логин и пароль пользователя на компе 
