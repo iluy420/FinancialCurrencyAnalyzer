@@ -34,8 +34,8 @@
                    ToolTip="Введите код подтверждения"/>
         
         <TextBlock Grid.Row="1"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="4"
                    Text="На вашу электронную почту отправлен код подтверждения, введите его ниже"
                    FontSize="17"
                    TextAlignment="Center"

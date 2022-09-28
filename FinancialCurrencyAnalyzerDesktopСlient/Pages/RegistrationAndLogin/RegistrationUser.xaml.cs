@@ -1,5 +1,6 @@
 ﻿using Consts;
 using DataBase.Contexts;
+using DataBase.Core.Enums;
 using DataBase.Core.Models;
 using Extensions;
 using System;
@@ -25,14 +26,19 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
         public RegistrationUser()
         {
             InitializeComponent();
-            // запись в combobox EmailDomainConts 
+
+            // запись в combobox значений из EmailDomainEnum
+            foreach (EmailDomainEnum s in Enum.GetValues(typeof(EmailDomainEnum)))
+            {
+                ComboBoxEmailDomain.Items.Add(StringEnum.GetStringValue(s));
+            }
         }
 
         private void ButtunRegistration_Click(object sender, RoutedEventArgs e)
         {
             if (RegistrationUsers(TextBoxName.Text, TextBoxSurname.Text, TextBoxPatronymic.Text,
-                TextBoxLogin.Text, TextBoxPassword.Password, TextBoxCopyPassword.Password
-                , TextBoxEmailName.Text, ComboBoxEmailDomain.SelectedValue.ToString()))
+                TextBoxLogin.Text, TextBoxPassword.Password, TextBoxCopyPassword.Password, TextBoxEmailName.Text,
+                ComboBoxEmailDomain.SelectedValue != null ? ComboBoxEmailDomain.SelectedValue.ToString() : ""))
             {
                 string alphanumericKey =  WorkingWithPasswords.GetGenerateAlphanumericKey(10);
                 string emailFull = TextBoxEmailName.Text + ComboBoxEmailDomain.SelectedValue.ToString();

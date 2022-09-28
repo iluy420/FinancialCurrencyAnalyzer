@@ -38,17 +38,17 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
                 {
                     try
                     {
-                        var user = db.Users.AsNoTracking()
-                        .FirstOrDefault(u => u.Login == _login);
+                        User user = db.Users.FirstOrDefault(u => u.Login == _login);
 
                         if (user != null)
                         {
                             user.EmailConfirmed = true;
-
-                            db.Users.Add(user);
+                            
                             db.SaveChanges();
-
                             MessageBox.Show("Почта подтверждена!");
+
+                            NavigatorExtensions.RemoveAllEntry(NavigationService);
+                            NavigationService?.Navigate(new Login());
                         }
                         else
                         {

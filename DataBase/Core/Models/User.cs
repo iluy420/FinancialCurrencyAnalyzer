@@ -29,8 +29,7 @@ namespace DataBase.Core.Models
         /// пароль пользователя
         /// </summary>
         [Required]
-        [MinLength(6, ErrorMessage = "Минимальная длина пароля 6 символов")]
-        [MaxLength(20, ErrorMessage = "Максимальная длина пароля 20 символов")]
+        [StringLength(40)]
         public string Password { get; set; }
         #endregion
 

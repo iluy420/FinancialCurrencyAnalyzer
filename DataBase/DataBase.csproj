@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\DataBaseContext.cs" />
+    <Compile Include="Core\Enums\EmailDomainEnum.cs" />
     <Compile Include="Core\Models\Subscription.cs" />
     <Compile Include="Core\Models\User.cs" />
     <Compile Include="Core\Models\Сurrency.cs" />
@@ -65,12 +66,15 @@
     <Compile Include="Migrations\202209231748513_EmailConfirmedСhanged.designer.cs">
       <DependentUpon>202209231748513_EmailConfirmedСhanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209281501056_PasswordRecycling.cs" />
+    <Compile Include="Migrations\202209281501056_PasswordRecycling.designer.cs">
+      <DependentUpon>202209281501056_PasswordRecycling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Bases\" />
-    <Folder Include="Core\Enums\" />
     <Folder Include="Core\Extensions\" />
     <Folder Include="Core\Views\" />
   </ItemGroup>
@@ -79,6 +83,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Attributes\Attributes.csproj">
+      <Project>{162343a7-4f50-4c75-8c50-9f2def3ca80a}</Project>
+      <Name>Attributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Consts\Consts.csproj">
       <Project>{61dec687-d936-440c-a890-7297fd0c37db}</Project>
       <Name>Consts</Name>
@@ -90,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209231748513_EmailConfirmedСhanged.resx">
       <DependentUpon>202209231748513_EmailConfirmedСhanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209281501056_PasswordRecycling.resx">
+      <DependentUpon>202209281501056_PasswordRecycling.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
