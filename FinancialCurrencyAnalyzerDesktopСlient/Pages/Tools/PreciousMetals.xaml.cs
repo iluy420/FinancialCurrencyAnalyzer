@@ -57,7 +57,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                                 preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Palladium);
                                 break;
                             default:
-                                preciousMetal.CodMet = "Не известный метал";
+                                preciousMetal.CodMet = "Не известный металл";
                                 break;
                         }
                     }
