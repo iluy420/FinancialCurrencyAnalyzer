@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,10 +43,10 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
             DateTimeNow.Text = DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss");
         }
 
-        private void BackClick(object sender, RoutedEventArgs e)
-        {
-            if (MainFrame.CanGoBack) MainFrame.GoBack();
-        }
+        //private void BackClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (MainFrame.CanGoBack) MainFrame.GoBack();
+        //}
 
         private void MainFrame_OnNavigeted(object sender, NavigationEventArgs e)
         {
@@ -53,18 +54,46 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
             //настройки заголовка окна
             Title = $"FinancialCurrencyAnalyzer - {page.Title}";
 
-            //настройки кнопки "назад"
+            //настройки меню
             if (page is Pages.RegistrationAndLogin.Login
-                || page is Pages.Menus.MainMenu
+                || page is Pages.RegistrationAndLogin.EmailConfirmation
                 || page is Pages.RegistrationAndLogin.RegistrationUser)
             {
-                Back.Visibility = Visibility.Hidden;
+                MenuProgramm.Visibility = Visibility.Hidden;
             }
-            else Back.Visibility = Visibility.Visible;
+            else MenuProgramm.Visibility = Visibility.Visible;
+
+            //настройки кнопки назад
+            if (page is Pages.RegistrationAndLogin.EmailConfirmation
+                || page is Pages.RegistrationAndLogin.RegistrationUser)
+            {
+                Backbtn.Visibility = Visibility.Visible;
+            }
+            else Backbtn.Visibility = Visibility.Hidden;
 
             //настройки размера окна
-            if(page is Pages.RegistrationAndLogin.Login) this.WindowState = WindowState.Normal;
+            if (page is Pages.RegistrationAndLogin.Login) this.WindowState = WindowState.Normal;
             else this.WindowState = WindowState.Maximized;
+
+        }
+
+        private void PreciousMetals_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new PreciousMetals());
+        }
+
+        private void Currency_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Currency());
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.CanGoBack) MainFrame.GoBack();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

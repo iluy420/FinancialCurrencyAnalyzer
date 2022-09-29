@@ -1,0 +1,27 @@
+﻿<Page x:Class="FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools.Currency"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Currency">
+
+    <Grid>
+        <DataGrid x:Name="CurrencyDataGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название валюты" 
+                                    Binding="{Binding Vname}"/>
+                <DataGridTextColumn Header="Номинал" 
+                                    Binding="{Binding Vnom}"/>
+                <DataGridTextColumn Header="Курс" 
+                                    Binding="{Binding Vcurs}"/>
+                <DataGridTextColumn Header="ISO Цифровой код валюты" 
+                                    Binding="{Binding Vcode}"/>
+                <DataGridTextColumn Header="ISO Символьный код валюты" 
+                                    Binding="{Binding VchCode}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

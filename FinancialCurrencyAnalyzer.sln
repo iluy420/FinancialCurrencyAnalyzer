@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUseSOUPapiCB", "TestUse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUseSOUPapiCBConsole", "TestUseSOUPapiCBConsole\TestUseSOUPapiCBConsole.csproj", "{65040683-1743-4D26-92F5-37376983FE2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СentralBankApi", "СentralBankApi\СentralBankApi.csproj", "{52AAAAE2-2628-4A1E-B88B-52151EAB4870}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{65040683-1743-4D26-92F5-37376983FE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65040683-1743-4D26-92F5-37376983FE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65040683-1743-4D26-92F5-37376983FE2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52AAAAE2-2628-4A1E-B88B-52151EAB4870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AAAAE2-2628-4A1E-B88B-52151EAB4870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52AAAAE2-2628-4A1E-B88B-52151EAB4870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52AAAAE2-2628-4A1E-B88B-52151EAB4870}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{162343A7-4F50-4C75-8C50-9F2DEF3CA80A} = {109ED62A-23AB-4402-AEA9-BBBAAE710412}
 		{E2D616D4-9F84-4B3E-8337-6E43894A262F} = {1EDF5C13-3A57-4E2F-AB3E-C03676500F3B}
 		{65040683-1743-4D26-92F5-37376983FE2A} = {1EDF5C13-3A57-4E2F-AB3E-C03676500F3B}
+		{52AAAAE2-2628-4A1E-B88B-52151EAB4870} = {109ED62A-23AB-4402-AEA9-BBBAAE710412}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1384A6F1-ED1C-4FA1-BF6E-0C4E52E21421}

@@ -37,9 +37,8 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
         {
             if(UserLogin(TextBoxLogin.Text, Password.Password, RememberData.IsChecked.Value))
             {
-                NavigationService.RemoveBackEntry();// удаляем страницу login из журнала навигации 
-
                 NavigationService?.Navigate(new Menus.MainMenu());//переход в главное меню
+                NavigationService.RemoveBackEntry();// удаляем страницу login из журнала навигации 
             }
         }
 
@@ -60,9 +59,9 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
             {
                 try
                 {
-                    password = WorkingWithPasswords.GetHashSHA1(password);
+                    string passwordSha = WorkingWithPasswords.GetHashSHA1(password);
                     var user = db.Users.AsNoTracking().FirstOrDefault(u => u.Login == login
-                                && u.Password == password);
+                                && u.Password == passwordSha);
                     if (user == null)
                     {
                         MessageBox.Show("Пользователь с такими данными не найден!");
