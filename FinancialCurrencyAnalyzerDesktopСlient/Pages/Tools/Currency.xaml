@@ -3,25 +3,62 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa ="http://schemas.fontawesome.com/icons/"
       xmlns:local="clr-namespace:FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Currency">
 
     <Grid>
-        <DataGrid x:Name="CurrencyDataGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock x:Name="NamePage" Grid.Row="0" Grid.ColumnSpan="5" FontSize="32"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <DatePicker x:Name="DateCourse" Grid.Row="1" SelectedDateFormat="Short" 
+                    SelectedDateChanged="DateСourse_SelectedDateChanged"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        
+        <!--#region таблица валют-->
+        <DataGrid x:Name="CurrencyDataGrid"
+                  Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название валюты" 
-                                    Binding="{Binding Vname}"/>
+                                    Binding="{Binding Vname}"
+                                    Width="*"/>
+                
                 <DataGridTextColumn Header="Номинал" 
-                                    Binding="{Binding Vnom}"/>
+                                    Binding="{Binding Vnom}"
+                                    Width="*"/>
+                
                 <DataGridTextColumn Header="Курс" 
-                                    Binding="{Binding Vcurs}"/>
+                                    Binding="{Binding Vcurs}"
+                                    Width="*"/>
+                
                 <DataGridTextColumn Header="ISO Цифровой код валюты" 
-                                    Binding="{Binding Vcode}"/>
+                                    Binding="{Binding Vcode}"
+                                    Width="*"/>
+                
                 <DataGridTextColumn Header="ISO Символьный код валюты" 
-                                    Binding="{Binding VchCode}"/>
+                                    Binding="{Binding VchCode}"
+                                    Width="*"/>
+
+                <DataGridTemplateColumn Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="ButtonConvert" 
+                                    Content="К конвентору" 
+                                    Click="ButtonConvert_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
+        <!--#endregion-->
+        
     </Grid>
 </Page>

@@ -9,14 +9,30 @@
       Title="PreciousMetals">
 
     <Grid>
-        <DataGrid x:Name="PreciousMetalsDataGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock x:Name="NamePage" Grid.Row="0" Grid.ColumnSpan="5" FontSize="32"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <DatePicker x:Name="DateCourse" Grid.Row="1"  SelectedDateFormat="Short" 
+                    SelectedDateChanged="DateСourse_SelectedDateChanged"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <DataGrid x:Name="PreciousMetalsDataGrid"
+                  Grid.Row="2" Grid.Column="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата котирования" 
-                                    Binding="{Binding DateMet}"/>
+                                    Binding="{Binding DateMet}"
+                                    Width="*"/>
                 <DataGridTextColumn Header="Тип металла" 
-                                    Binding="{Binding CodMet}"/>
+                                    Binding="{Binding CodMet}"
+                                    Width="*"/>
                 <DataGridTextColumn Header="Учетная цена" 
-                                    Binding="{Binding Price}"/>
+                                    Binding="{Binding Price}"
+                                    Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

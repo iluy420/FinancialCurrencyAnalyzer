@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using DataBase.Contexts;
 using Extensions;
 using FinancialCurrencyAnalyzerDesktopСlient.Models.Settings;
+using FinancialCurrencyAnalyzerDesktopСlient.Windows;
 using Newtonsoft.Json;
 
 
@@ -68,7 +69,9 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
                         return false;
                     }
 
-                    MessageBox.Show("Пользователь успешно найден!");
+                    MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow.UserId = user.UserId;
+                    //MessageBox.Show("Пользователь успешно найден!");
                 }
                 catch
                 {

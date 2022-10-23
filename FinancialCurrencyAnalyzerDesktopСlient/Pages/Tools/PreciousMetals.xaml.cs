@@ -25,13 +25,24 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
         {
             InitializeComponent();
 
-            PreciousMetalsImport();
+            Title = $"Просмотр курсов драгоценных металлов";
+            NamePage.Text = Title;
+
+            DateCourse.SelectedDate = DateTime.Now.AddDays(-1);
+
         }
 
-        private void PreciousMetalsImport()
+        private void DateСourse_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            PreciousMetalsImport((DateTime)DateCourse.SelectedDate);
+        }
+
+        private void PreciousMetalsImport(DateTime date)
+        {
+            PreciousMetalsDataGrid.Items.Clear();
+
             СentralBankApi.ApiCB.DailyInfoSoapClient client = new СentralBankApi.ApiCB.DailyInfoSoapClient("DailyInfoSoap");
-            DateTime dateTimeNow = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-ddT00:00:00"));
+            DateTime dateTimeNow = Convert.ToDateTime(date.ToString("yyyy-MM-ddT00:00:00"));
             XmlNode doc = client.DragMetDynamicXML(dateTimeNow, dateTimeNow);
 
             foreach (XmlNode xmlNode in doc)

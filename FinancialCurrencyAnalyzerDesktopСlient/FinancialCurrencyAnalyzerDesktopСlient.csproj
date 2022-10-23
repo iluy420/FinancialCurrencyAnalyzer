@@ -44,13 +44,22 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome5, Version=2.1.10.0, Culture=neutral, PublicKeyToken=9cfaf01297a008f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome5.2.1.10\lib\net472\FontAwesome5.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome5.Net, Version=2.1.10.0, Culture=neutral, PublicKeyToken=9cfaf01297a008f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome5.2.1.10\lib\net472\FontAwesome5.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -60,9 +69,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -70,6 +81,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Dictionaries\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Account\AccountSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -89,11 +104,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Tools\Converter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Tools\Currency.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Tools\CurrencySubscription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Tools\PreciousMetals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Tools\PreciousMetalsSubscription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Tools\PriceDynamicCurrencyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Tools\PriceDynamiPreciousMetalsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,9 +142,14 @@
     </Compile>
     <Compile Include="Enums\MetalsEnum.cs" />
     <Compile Include="Extensions\NavigatorExtensions.cs" />
+    <Compile Include="Models\CurrencyDynamicModel.cs" />
     <Compile Include="Models\CurrencyModel.cs" />
     <Compile Include="Models\PreciousMetalsModel.cs" />
+    <Compile Include="Models\ReferenceCurrencyСodes.cs" />
     <Compile Include="Models\Settings\UserLoginSettings.cs" />
+    <Compile Include="Pages\Account\AccountSettings.xaml.cs">
+      <DependentUpon>AccountSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RegistrationAndLogin\EmailConfirmation.xaml.cs">
       <DependentUpon>EmailConfirmation.xaml</DependentUpon>
     </Compile>
@@ -122,11 +162,26 @@
     <Compile Include="Pages\RegistrationAndLogin\RegistrationUser.xaml.cs">
       <DependentUpon>RegistrationUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Tools\Converter.xaml.cs">
+      <DependentUpon>Converter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Tools\Currency.xaml.cs">
       <DependentUpon>Currency.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Tools\CurrencySubscription.xaml.cs">
+      <DependentUpon>CurrencySubscription.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Tools\PreciousMetals.xaml.cs">
       <DependentUpon>PreciousMetals.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tools\PreciousMetalsSubscription.xaml.cs">
+      <DependentUpon>PreciousMetalsSubscription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tools\PriceDynamicCurrencyPage.xaml.cs">
+      <DependentUpon>PriceDynamicCurrencyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tools\PriceDynamiPreciousMetalsPage.xaml.cs">
+      <DependentUpon>PriceDynamiPreciousMetalsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

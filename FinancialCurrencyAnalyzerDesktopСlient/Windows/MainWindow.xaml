@@ -35,6 +35,7 @@
                 VerticalAlignment="Center">
                 <MenuItem x:Name="MenuItem_Tools" 
                           Header="Инструменты">
+                    
                     <MenuItem Header="Курсы">
                         <MenuItem x:Name="PreciousMetals"
                                   Header="Драгоценные металлы"
@@ -42,6 +43,24 @@
                         <MenuItem x:Name="Currency"
                                   Header="Валюта"
                                   Click="Currency_Click"/>
+                    </MenuItem>
+                    
+                    <MenuItem Header="Динамика цены">
+                        <MenuItem x:Name="PriceDynamicPreciousMetals"
+                                  Header="Динамика цены драгоценных металлы"
+                                  Click="PriceDynamicPreciousMetals_Click"/>
+                        <MenuItem x:Name="PriceDynamicCurrency"
+                                  Header="Динамика цены валют"
+                                  Click="PriceDynamicCurrency_Click"/>
+                    </MenuItem>
+
+                    <MenuItem Header="Подписки">
+                        <MenuItem x:Name="SubscriptionForecastPricePreciousMetals"
+                                  Header="Получение ежедневных курсов драгоценных металлов"
+                                  Click="SubscriptionForecastPricePreciousMetals_Click"/>
+                        <MenuItem x:Name="SubscriptionForecastPriceCurrency"
+                                  Header="Получение ежедневных курсов валют"
+                                  Click="SubscriptionForecastPriceCurrency_Click"/>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="Settings"

@@ -19,6 +19,8 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
 { 
     public partial class MainWindow : Window
     {
+        public Guid UserId { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -42,11 +44,6 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
         {
             DateTimeNow.Text = DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss");
         }
-
-        //private void BackClick(object sender, RoutedEventArgs e)
-        //{
-        //    if (MainFrame.CanGoBack) MainFrame.GoBack();
-        //}
 
         private void MainFrame_OnNavigeted(object sender, NavigationEventArgs e)
         {
@@ -95,6 +92,26 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void PriceDynamicPreciousMetals_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new PriceDynamiPreciousMetalsPage());
+        }
+
+        private void PriceDynamicCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new PriceDynamicCurrencyPage());
+        }
+
+        private void SubscriptionForecastPricePreciousMetals_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new PreciousMetalsSubscription());
+        }
+
+        private void SubscriptionForecastPriceCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new CurrencySubscription());
         }
     }
 }
