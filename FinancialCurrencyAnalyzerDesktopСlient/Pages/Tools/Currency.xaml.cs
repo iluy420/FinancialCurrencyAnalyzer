@@ -29,34 +29,45 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             Title = $"Просмотр курсов валют";
             NamePage.Text = Title;
 
-            DateCourse.SelectedDate = DateTime.Now;
+            if (DateTime.Now.DayOfWeek != DayOfWeek.Monday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
+            {
+                DateCourse.SelectedDate = DateTime.Now;
+            }
         }
 
         private static List<CurrencyModel> _currencies = new List<CurrencyModel>();
 
         private void CurrenciesImport(DateTime date)
         {
-            if (DateCourse.SelectedDate <= DateTime.Now)
+            if (date <= DateTime.Now)
             {
-                CurrencyDataGrid.Items.Clear();
-                _currencies.Clear();
-
-                СentralBankApi.ApiCB.DailyInfoSoapClient client = new СentralBankApi.ApiCB.DailyInfoSoapClient("DailyInfoSoap");
-                XmlNode doc = client.GetCursOnDateXML(Convert.ToDateTime(date.ToString("yyyy-MM-ddT00:00:00")));
-
-                foreach (XmlNode xmlNode in doc)
+                if(date.DayOfWeek == DayOfWeek.Monday || date.DayOfWeek == DayOfWeek.Sunday)
                 {
-                    CurrencyModel currency = new CurrencyModel();
-                    foreach (XmlNode xmlNode1 in xmlNode.ChildNodes)
+                    MessageBox.Show("В воскресенье и понедельник курсы не котируются см. курс на субботу");
+                    CurrencyDataGrid.Items.Clear();
+                }
+                else
+                {
+                    CurrencyDataGrid.Items.Clear();
+                    _currencies.Clear();
+
+                    СentralBankApi.ApiCB.DailyInfoSoapClient client = new СentralBankApi.ApiCB.DailyInfoSoapClient("DailyInfoSoap");
+                    XmlNode doc = client.GetCursOnDateXML(Convert.ToDateTime(date.ToString("yyyy-MM-ddT00:00:00")));
+
+                    foreach (XmlNode xmlNode in doc)
                     {
-                        if (xmlNode1.Name == "Vname") currency.Vname = xmlNode1.InnerText.Trim();
-                        if (xmlNode1.Name == "Vnom") currency.Vnom = xmlNode1.InnerText;
-                        if (xmlNode1.Name == "Vcurs") currency.Vcurs = xmlNode1.InnerText;
-                        if (xmlNode1.Name == "Vcode") currency.Vcode = xmlNode1.InnerText;
-                        if (xmlNode1.Name == "VchCode") currency.VchCode = xmlNode1.InnerText;
+                        CurrencyModel currency = new CurrencyModel();
+                        foreach (XmlNode xmlNode1 in xmlNode.ChildNodes)
+                        {
+                            if (xmlNode1.Name == "Vname") currency.Vname = xmlNode1.InnerText.Trim();
+                            if (xmlNode1.Name == "Vnom") currency.Vnom = xmlNode1.InnerText;
+                            if (xmlNode1.Name == "Vcurs") currency.Vcurs = xmlNode1.InnerText;
+                            if (xmlNode1.Name == "Vcode") currency.Vcode = xmlNode1.InnerText;
+                            if (xmlNode1.Name == "VchCode") currency.VchCode = xmlNode1.InnerText;
+                        }
+                        _currencies.Add(currency);
+                        CurrencyDataGrid.Items.Add(currency);
                     }
-                    _currencies.Add(currency);
-                    CurrencyDataGrid.Items.Add(currency);
                 }
             }else CurrencyDataGrid.Items.Clear();
         }

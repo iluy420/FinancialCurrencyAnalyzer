@@ -116,6 +116,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Tools\ForecastCurrency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Tools\ForecastPreciousMetals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Tools\PreciousMetals.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +178,12 @@
     </Compile>
     <Compile Include="Pages\Tools\CurrencySubscription.xaml.cs">
       <DependentUpon>CurrencySubscription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tools\ForecastCurrency.xaml.cs">
+      <DependentUpon>ForecastCurrency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Tools\ForecastPreciousMetals.xaml.cs">
+      <DependentUpon>ForecastPreciousMetals.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Tools\PreciousMetals.xaml.cs">
       <DependentUpon>PreciousMetals.xaml</DependentUpon>

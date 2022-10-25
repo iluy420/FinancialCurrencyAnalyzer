@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using DataBase.Core.Models;
+using Extensions;
 using FinancialCurrencyAnalyzerDesktopСlient.Enums;
 using FinancialCurrencyAnalyzerDesktopСlient.Models;
 using System;
@@ -29,6 +30,8 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 
             ChartArea chartArea = new ChartArea("Main");
             chartArea.AxisX.ScrollBar.Enabled = true;
+            chartArea.AxisY.ScrollBar.Enabled=true;
+            chartArea.AxisX.Interval = 1;
             ChartTab.ChartAreas.Add(chartArea);
 
             var currentSeries = new Series("Динамика цены")
@@ -113,8 +116,6 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             Series currentSeries = ChartTab.Series.FirstOrDefault();
             currentSeries.ChartType = SeriesChartType.Line;
             currentSeries.Points.Clear();
-            currentSeries.MarkerBorderWidth = 1;
-            currentSeries.SetCustomProperty("PointWidth", "100.0");
             currentSeries.MarkerStyle = MarkerStyle.Circle;
 
             if (_preciousMetalsDynamic.Count() == 0 && _selectMetal != "")
@@ -126,7 +127,8 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                 if(metal.CodMet == _selectMetal)
                 {
                     DataPoint point = new DataPoint();
-                    point.SetValueXY(metal.DateMet, metal.Price);
+                    DateTime date = Convert.ToDateTime(metal.DateMet);
+                    point.SetValueXY(date.ToString("dd-MM-yyyy"), metal.Price);
                     currentSeries.Points.Add(point);
                 }
             }

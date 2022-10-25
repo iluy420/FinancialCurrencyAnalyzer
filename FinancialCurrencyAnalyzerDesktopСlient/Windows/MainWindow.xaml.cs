@@ -113,5 +113,15 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
         {
             MainFrame.NavigationService.Navigate(new CurrencySubscription());
         }
+
+        private void ForecastCurrency_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new ForecastCurrency());
+        }
+
+        private void ForecastPreciousMetals_Click(object sender, RoutedEventArgs e)
+        {
+           MainFrame.NavigationService.Navigate(new ForecastPreciousMetals());
+        }
     }
 }

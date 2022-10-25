@@ -18,7 +18,8 @@
 
         <!--#region таблица подписки на валюты-->
         <DataGrid x:Name="CurrencySubscriptionDataGrid"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название валюты" 
                                     Binding="{Binding currencyModel.Vname}"

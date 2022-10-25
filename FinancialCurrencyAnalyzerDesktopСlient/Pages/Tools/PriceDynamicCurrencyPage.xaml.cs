@@ -33,6 +33,8 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 
             ChartArea chartArea = new ChartArea("Main");
             chartArea.AxisX.ScrollBar.Enabled = true;
+            chartArea.AxisY.ScrollBar.Enabled = true;
+            chartArea.AxisX.Interval = 1;
             ChartPayments.ChartAreas.Add(chartArea);
 
             var currentSeries = new Series("Динамика цены")
@@ -139,17 +141,16 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             Series currentSeries = ChartPayments.Series.FirstOrDefault();
             currentSeries.ChartType = SeriesChartType.Line;
             currentSeries.Points.Clear();
-            currentSeries.MarkerBorderWidth = 1;
-            currentSeries.SetCustomProperty("PointWidth", "100.0");
             currentSeries.MarkerStyle = MarkerStyle.Circle;
-            if(_currencyDynamic.Count() == 0 && VcommonCode != "")
+            if (_currencyDynamic.Count() == 0 && VcommonCode != "")
             {
                 MessageBox.Show("Данные не найдены!");
             }
             foreach (var currency in _currencyDynamic)
             {
                 DataPoint point = new DataPoint();
-                point.SetValueXY(currency.CursDate, currency.Vcurs);
+                DateTime date = Convert.ToDateTime(currency.CursDate);
+                point.SetValueXY(date.ToString("dd-MM-yyyy"), currency.Vcurs);
                 currentSeries.Points.Add(point);
             }
         }

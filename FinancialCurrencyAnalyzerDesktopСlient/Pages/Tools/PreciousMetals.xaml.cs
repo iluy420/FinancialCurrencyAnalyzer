@@ -28,8 +28,10 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             Title = $"Просмотр курсов драгоценных металлов";
             NamePage.Text = Title;
 
-            DateCourse.SelectedDate = DateTime.Now.AddDays(-1);
-
+            if(DateTime.Now.DayOfWeek != DayOfWeek.Monday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
+            {
+                DateCourse.SelectedDate = DateTime.Now;
+            }
         }
 
         private void DateСourse_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -39,42 +41,50 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 
         private void PreciousMetalsImport(DateTime date)
         {
-            PreciousMetalsDataGrid.Items.Clear();
-
-            СentralBankApi.ApiCB.DailyInfoSoapClient client = new СentralBankApi.ApiCB.DailyInfoSoapClient("DailyInfoSoap");
-            DateTime dateTimeNow = Convert.ToDateTime(date.ToString("yyyy-MM-ddT00:00:00"));
-            XmlNode doc = client.DragMetDynamicXML(dateTimeNow, dateTimeNow);
-
-            foreach (XmlNode xmlNode in doc)
+            if (date.DayOfWeek == DayOfWeek.Monday || date.DayOfWeek == DayOfWeek.Sunday)
             {
-                PreciousMetalsModel preciousMetal = new PreciousMetalsModel();
-                foreach (XmlNode xmlNode1 in xmlNode.ChildNodes)
+                MessageBox.Show("В воскресенье и понедельник курсы не котируются см. курс на субботу");
+                PreciousMetalsDataGrid.Items.Clear();
+            }
+            else
+            {
+                PreciousMetalsDataGrid.Items.Clear();
+
+                СentralBankApi.ApiCB.DailyInfoSoapClient client = new СentralBankApi.ApiCB.DailyInfoSoapClient("DailyInfoSoap");
+                DateTime dateTimeNow = Convert.ToDateTime(date.ToString("yyyy-MM-ddT00:00:00"));
+                XmlNode doc = client.DragMetDynamicXML(dateTimeNow, dateTimeNow);
+
+                foreach (XmlNode xmlNode in doc)
                 {
-                    if (xmlNode1.Name == "DateMet") preciousMetal.DateMet = Convert.ToDateTime(xmlNode1.InnerText).ToString("dd.MM.yyyy");
-                    if (xmlNode1.Name == "CodMet")
+                    PreciousMetalsModel preciousMetal = new PreciousMetalsModel();
+                    foreach (XmlNode xmlNode1 in xmlNode.ChildNodes)
                     {
-                        switch (xmlNode1.InnerText)
+                        if (xmlNode1.Name == "DateMet") preciousMetal.DateMet = Convert.ToDateTime(xmlNode1.InnerText).ToString("dd.MM.yyyy");
+                        if (xmlNode1.Name == "CodMet")
                         {
-                            case "1":
-                                preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Gold);
-                                break;
-                            case "2":
-                                preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Silver);
-                                break;
-                            case "3":
-                                preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Platinum);
-                                break;
-                            case "4":
-                                preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Palladium);
-                                break;
-                            default:
-                                preciousMetal.CodMet = "Не известный металл";
-                                break;
+                            switch (xmlNode1.InnerText)
+                            {
+                                case "1":
+                                    preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Gold);
+                                    break;
+                                case "2":
+                                    preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Silver);
+                                    break;
+                                case "3":
+                                    preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Platinum);
+                                    break;
+                                case "4":
+                                    preciousMetal.CodMet = StringEnum.GetStringValue(MetalsEnum.Palladium);
+                                    break;
+                                default:
+                                    preciousMetal.CodMet = "Не известный металл";
+                                    break;
+                            }
                         }
+                        if (xmlNode1.Name == "price") preciousMetal.Price = xmlNode1.InnerText;
                     }
-                    if (xmlNode1.Name == "price") preciousMetal.Price = xmlNode1.InnerText;
+                    PreciousMetalsDataGrid.Items.Add(preciousMetal);
                 }
-                PreciousMetalsDataGrid.Items.Add(preciousMetal);
             }
         }
     }

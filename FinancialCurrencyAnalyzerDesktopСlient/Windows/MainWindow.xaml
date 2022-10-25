@@ -54,6 +54,15 @@
                                   Click="PriceDynamicCurrency_Click"/>
                     </MenuItem>
 
+                    <MenuItem Header="Прогнозы">
+                        <MenuItem x:Name="ForecastCurrency"
+                                  Header="Прогноз на курсы валют"
+                                  Click="ForecastCurrency_Click"/>
+                        <MenuItem x:Name="ForecastPreciousMetals"
+                                  Header="Прогноз на курсы металлов"
+                                  Click="ForecastPreciousMetals_Click"/>
+                    </MenuItem>
+                    
                     <MenuItem Header="Подписки">
                         <MenuItem x:Name="SubscriptionForecastPricePreciousMetals"
                                   Header="Получение ежедневных курсов драгоценных металлов"

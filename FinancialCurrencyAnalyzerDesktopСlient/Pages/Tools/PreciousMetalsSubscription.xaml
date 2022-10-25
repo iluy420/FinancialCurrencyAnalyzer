@@ -19,7 +19,8 @@
 
         <!--#region таблица подписки на металлы-->
         <DataGrid x:Name="PreciousMetalsSubscriptionDataGrid"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название металла" 
                                     Binding="{Binding metals.NameMet}"
