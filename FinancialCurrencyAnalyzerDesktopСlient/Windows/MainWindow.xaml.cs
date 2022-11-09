@@ -1,6 +1,12 @@
-﻿using FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools;
+﻿using FinancialCurrencyAnalyzerDesktopСlient.Models.Settings;
+using FinancialCurrencyAnalyzerDesktopСlient.Pages.Account;
+using FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin;
+using FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools;
+using FinancialCurrencyAnalyzerDesktopСlient.Properties;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +30,28 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
         public MainWindow()
         {
             InitializeComponent();
+            string setting = "";
+            if (File.Exists("../../UserSettings/UserThemeSettings.txt"))
+            {
+                using (FileStream fs = new FileStream("../../UserSettings/UserThemeSettings.txt", FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    StreamReader reader = new StreamReader(fs);
+
+                    setting = reader.ReadLine();
+                }
+            }
+            else
+            {
+                setting = "Dictionaries/LightTheme.xaml";
+            }
+            // определяем путь к файлу ресурсов
+            var uri = new Uri(setting, UriKind.Relative);
+            // загружаем словарь ресурсов
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            // очищаем коллекцию ресурсов приложения
+            Application.Current.Resources.MergedDictionaries.Clear();
+            // добавляем загруженный словарь ресурсов
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -91,7 +119,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.NavigationService.Navigate(new AccountSettings());
         }
 
         private void PriceDynamicPreciousMetals_Click(object sender, RoutedEventArgs e)
@@ -122,6 +150,16 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
         private void ForecastPreciousMetals_Click(object sender, RoutedEventArgs e)
         {
            MainFrame.NavigationService.Navigate(new ForecastPreciousMetals());
+        }
+
+        private void Account_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new AccountSettings());
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Login());
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Extensions
                 Subject = "Проверка электронной почты",
                 IsBodyHtml = true,
                 Body = $"Привет, {login}!</br>" +
-                $"Чтобы продолжить регистрацию в FinancialCurrencyAnalyzer, пожалуйста, используй следующий код подтверждения: <b>{confirmationKey}</b></br>"
+                $"Чтобы продолжить регистрацию почты в FinancialCurrencyAnalyzer, пожалуйста, используй следующий код подтверждения: <b>{confirmationKey}</b></br>"
             };
 
             SendEmailMail(message);

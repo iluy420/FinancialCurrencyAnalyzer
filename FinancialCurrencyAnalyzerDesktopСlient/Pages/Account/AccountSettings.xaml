@@ -3,12 +3,109 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa ="http://schemas.fontawesome.com/icons/"
       xmlns:local="clr-namespace:FinancialCurrencyAnalyzerDesktopСlient.Pages.Account"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccountSettings">
-
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="NamePage" Grid.Row="0" Grid.ColumnSpan="5" FontSize="32"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="Thema"  Grid.Row="0" Grid.Column="1" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       Grid.ColumnSpan="2" Text="Темная тема"/>
+            <CheckBox x:Name="ThemaCheckbox" Grid.Row="0" Grid.Column="3" 
+                      HorizontalAlignment="Center" VerticalAlignment="Center" Click="ThemaCheckbox_Checked"/>
+            
+            <TextBlock x:Name="Login" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="BtnLogin" Margin="5"
+                    Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"
+                    Click="BtnLogin_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,15,0" VerticalAlignment="Center">Редактировать</TextBlock>
+                    <fa:ImageAwesome x:Name="IconLogin" Icon="Solid_Edit" Width="25" Height="25"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock x:Name="NameUser" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="BtnName" Margin="5"
+                    Grid.Row="2" Grid.Column="3" VerticalAlignment="Center"
+                    Click="BtnName_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,15,0" VerticalAlignment="Center">Редактировать</TextBlock>
+                    <fa:ImageAwesome x:Name="IconName" Icon="Solid_Edit" Width="25" Height="25"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock x:Name="Surname" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="BtnSurname" Margin="5"
+                     Grid.Row="3" Grid.Column="3" VerticalAlignment="Center"
+                    Click="BtnSurname_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,15,0" VerticalAlignment="Center">Редактировать</TextBlock>
+                    <fa:ImageAwesome x:Name="IconSurname"  Icon="Solid_Edit" Width="25" Height="25"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock x:Name="Patronymic" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="BtnPatronymic" Margin="5"
+                    Grid.Row="4" Grid.Column="3" VerticalAlignment="Center"
+                    Click="BtnPatronymic_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,15,0" VerticalAlignment="Center">Редактировать</TextBlock>
+                    <fa:ImageAwesome x:Name="IconPatronymic"  Icon="Solid_Edit" Width="25" Height="25"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock x:Name="FullEmail"  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="BtnEmail" Margin="5"
+                    Grid.Row="5" Grid.Column="3" VerticalAlignment="Center"
+                    Click="BtnEmail_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,15,0" VerticalAlignment="Center">Редактировать</TextBlock>
+                    <fa:ImageAwesome x:Name="IconFullEmail" Icon="Solid_Edit" Width="25" Height="25"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock x:Name="EmailConfirmed"  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="BtnEmailConfirmed" Margin="5" 
+                    Grid.Row="6" Grid.Column="3" VerticalAlignment="Center"
+                    Click="BtnEmailConfirmed_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,15,0" VerticalAlignment="Center">Редактировать</TextBlock>
+                    <fa:ImageAwesome x:Name="IconEmailConfirmed" Icon="Solid_Edit" Width="25" Height="25"/>
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Closing="WindowsClosing"
         WindowStartupLocation="CenterScreen"
+        Icon="../AppPictures/icon-currency.png"
         MinHeight="500" MinWidth="800"
         Title="MainWindow" Height="500" Width="800">
     <Grid>
@@ -35,7 +36,7 @@
                 VerticalAlignment="Center">
                 <MenuItem x:Name="MenuItem_Tools" 
                           Header="Инструменты">
-                    
+
                     <MenuItem Header="Курсы">
                         <MenuItem x:Name="PreciousMetals"
                                   Header="Драгоценные металлы"
@@ -44,7 +45,7 @@
                                   Header="Валюта"
                                   Click="Currency_Click"/>
                     </MenuItem>
-                    
+
                     <MenuItem Header="Динамика цены">
                         <MenuItem x:Name="PriceDynamicPreciousMetals"
                                   Header="Динамика цены драгоценных металлы"
@@ -62,7 +63,7 @@
                                   Header="Прогноз на курсы металлов"
                                   Click="ForecastPreciousMetals_Click"/>
                     </MenuItem>
-                    
+
                     <MenuItem Header="Подписки">
                         <MenuItem x:Name="SubscriptionForecastPricePreciousMetals"
                                   Header="Получение ежедневных курсов драгоценных металлов"
@@ -72,17 +73,14 @@
                                   Click="SubscriptionForecastPriceCurrency_Click"/>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem x:Name="Settings"
-                          Header="Настройки" 
-                          Click="Settings_Click">
-                    <MenuItem Header="Цветовая тема"/>
-                </MenuItem>
                 <MenuItem x:Name="Account"
                           Header="Аккаунт" 
-                          HorizontalAlignment="Right"/>
-                <MenuItem x:Name="Back" 
-                          Header ="Назад" 
-                          Click="Back_Click"/>
+                          HorizontalAlignment="Right"
+                          Click="Account_Click"/>
+                <MenuItem x:Name="ExitBtn"
+                          Header="Выйти из аккаунта" 
+                          HorizontalAlignment="Right"
+                          Click="ExitBtn_Click"/>
             </Menu>
         </StackPanel>
         

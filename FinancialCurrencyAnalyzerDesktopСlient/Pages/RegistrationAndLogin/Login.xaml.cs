@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using DataBase.Contexts;
 using Extensions;
 using FinancialCurrencyAnalyzerDesktopСlient.Models.Settings;
+using FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools;
 using FinancialCurrencyAnalyzerDesktopСlient.Windows;
 using Newtonsoft.Json;
 
@@ -20,6 +21,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
 
             if (File.Exists("../../UserSettings/UserLoginSettings.json"))
             {
+                RememberData.IsChecked = true;
                 using (FileStream fs = new FileStream("../../UserSettings/UserLoginSettings.json", FileMode.OpenOrCreate, FileAccess.Read))
                 {
                     StreamReader reader = new StreamReader(fs);
@@ -38,7 +40,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
         {
             if(UserLogin(TextBoxLogin.Text, Password.Password, RememberData.IsChecked.Value))
             {
-                NavigationService?.Navigate(new Menus.MainMenu());//переход в главное меню
+                NavigationService?.Navigate(new Currency());
                 NavigationService.RemoveBackEntry();// удаляем страницу login из журнала навигации 
             }
         }
@@ -91,9 +93,12 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
 
                     writer.WriteLine(json);
 
-                    MessageBox.Show("Пароль и логин записаны");
                     writer.Close();
                 } 
+            }
+            else
+            {
+                File.Delete("../../UserSettings/UserLoginSettings.json");
             }
             return true;
         }

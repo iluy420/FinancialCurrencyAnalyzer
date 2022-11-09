@@ -138,7 +138,9 @@
         <ComboBox x:Name="ComboBoxEmailDomain"
                  Grid.Column="4"
                  Grid.Row="7"
-                 ToolTip ="Выберите доменное имя"/>
+                 ToolTip ="Выберите доменное имя"
+                  Style="{DynamicResource ComboBoxStyle1}" 
+                  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <!--#endregion-->
 
         <Button x:Name="ButtunRegistration"

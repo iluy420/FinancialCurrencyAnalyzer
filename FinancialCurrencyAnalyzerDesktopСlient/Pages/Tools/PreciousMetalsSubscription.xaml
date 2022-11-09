@@ -21,6 +21,11 @@
         <DataGrid x:Name="PreciousMetalsSubscriptionDataGrid"
                   Grid.Row="1"
                   IsReadOnly="True">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="Loaded" Handler="DataGridCell_Loaded"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название металла" 
                                     Binding="{Binding metals.NameMet}"

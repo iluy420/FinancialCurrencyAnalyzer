@@ -5,6 +5,7 @@ using FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin;
 using FinancialCurrencyAnalyzerDesktopСlient.Windows;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,21 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 {
     public partial class CurrencySubscription : Page
     {
+        private string _setting { get; set; }
+
         public CurrencySubscription()
         {
             InitializeComponent();
+
+            if (File.Exists("../../UserSettings/UserThemeSettings.txt"))
+            {
+                using (FileStream fs = new FileStream("../../UserSettings/UserThemeSettings.txt", FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    StreamReader reader = new StreamReader(fs);
+
+                    _setting = reader.ReadLine();
+                }
+            }
 
             Title = $"Подписка на курсы валюты";
             NamePage.Text = Title;
@@ -57,6 +70,17 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                     CurrencySubscriptionDataGrid.Items.Add(checkBoxModel);
                 }
 
+            }
+        }
+
+        void DataGridCell_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+
+            if (_setting == "Dictionaries/DarkTheme.xaml")
+            {
+                row.Background = new SolidColorBrush(Color.FromRgb(13, 13, 44));
+                row.Foreground = new SolidColorBrush(Color.FromRgb(98, 240, 178));
             }
         }
 

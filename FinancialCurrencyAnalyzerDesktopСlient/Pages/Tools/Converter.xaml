@@ -48,6 +48,7 @@
                  TextChanged="CurrencyTo_TextChanged"/>
 
         <fa:ImageAwesome  Icon="Solid_ArrowsAltH"
+                          x:Name="IconConventer"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           Grid.Row="3" Grid.Column="2"

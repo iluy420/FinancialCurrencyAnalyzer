@@ -32,7 +32,9 @@
                     my:DatePickerCalendar.IsMonthYear="True"
                     my:DatePickerDateFormat.DateFormat="MM/yyyy"/>
         <ComboBox x:Name="PreciousMetals" Grid.Row="1" Grid.Column="2"
-                  SelectionChanged="PreciousMetals_SelectionChanged"/>
+                  SelectionChanged="PreciousMetals_SelectionChanged" Margin="10"
+                  Style="{DynamicResource ComboBoxStyle1}" 
+                  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         <WindowsFormsHost Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" >
             <charts:Chart x:Name="ChartTab"/>

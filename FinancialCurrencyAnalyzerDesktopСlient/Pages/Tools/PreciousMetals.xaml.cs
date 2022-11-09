@@ -16,14 +16,29 @@ using System.Windows.Shapes;
 using System.Xml;
 using FinancialCurrencyAnalyzerDesktopСlient.Enums;
 using Extensions;
+using DataBase.Core.Models;
+using FinancialCurrencyAnalyzerDesktopСlient.Properties;
+using System.IO;
 
 namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 {
     public partial class PreciousMetals : Page
     {
+        private string _setting { get; set; }
+
         public PreciousMetals()
         {
             InitializeComponent();
+
+            if (File.Exists("../../UserSettings/UserThemeSettings.txt"))
+            {
+                using (FileStream fs = new FileStream("../../UserSettings/UserThemeSettings.txt", FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    StreamReader reader = new StreamReader(fs);
+
+                    _setting = reader.ReadLine();
+                }
+            }
 
             Title = $"Просмотр курсов драгоценных металлов";
             NamePage.Text = Title;
@@ -31,6 +46,17 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             if(DateTime.Now.DayOfWeek != DayOfWeek.Monday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
             {
                 DateCourse.SelectedDate = DateTime.Now;
+            }
+        }
+
+        void DataGridCell_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+
+            if (_setting == "Dictionaries/DarkTheme.xaml")
+            {
+                row.Background = new SolidColorBrush(Color.FromRgb(13, 13, 44));
+                row.Foreground = new SolidColorBrush(Color.FromRgb(98, 240, 178));
             }
         }
 
@@ -81,7 +107,10 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                                     break;
                             }
                         }
-                        if (xmlNode1.Name == "price") preciousMetal.Price = xmlNode1.InnerText;
+                        if (xmlNode1.Name == "price") {
+                            double curs = Convert.ToDouble(xmlNode1.InnerText.Trim().Replace('.', ','));
+                            preciousMetal.Price = string.Format("{0:f2}", Math.Round(curs, 2));
+                        }
                     }
                     PreciousMetalsDataGrid.Items.Add(preciousMetal);
                 }

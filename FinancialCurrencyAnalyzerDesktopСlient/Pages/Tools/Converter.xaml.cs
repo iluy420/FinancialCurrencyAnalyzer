@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FinancialCurrencyAnalyzerDesktopСlient.Models;
 using System.Runtime.ConstrainedExecution;
+using System.IO;
 
 namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 {
@@ -23,6 +24,21 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
         public Converter(CurrencyModel currentCurrency, DateTime date)
         {
             InitializeComponent();
+
+            string setting = "";
+            if (File.Exists("../../UserSettings/UserThemeSettings.txt"))
+            {
+                using (FileStream fs = new FileStream("../../UserSettings/UserThemeSettings.txt", FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    StreamReader reader = new StreamReader(fs);
+
+                    setting = reader.ReadLine();
+                }
+            }
+            if (setting == "Dictionaries/DarkTheme.xaml")
+            {
+                IconConventer.Foreground = new SolidColorBrush(Color.FromRgb(98, 240, 178));
+            }
 
             _currentCurrency = currentCurrency;
             _date = date;

@@ -23,7 +23,13 @@
 
         <DataGrid x:Name="PreciousMetalsDataGrid"
                   Grid.Row="2" Grid.Column="0"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="Loaded" Handler="DataGridCell_Loaded"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата котирования" 
                                     Binding="{Binding DateMet}"

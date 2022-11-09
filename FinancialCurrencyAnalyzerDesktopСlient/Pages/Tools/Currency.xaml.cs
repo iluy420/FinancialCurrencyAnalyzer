@@ -17,21 +17,51 @@ using System.Windows.Shapes;
 using System.Xml;
 using СentralBankApi;
 using Extensions;
+using FinancialCurrencyAnalyzerDesktopСlient.Properties;
+using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 {
     public partial class Currency : Page
     {
+        private string _setting { get; set; }
+
         public Currency()
         {
             InitializeComponent();
 
+            if (File.Exists("../../UserSettings/UserThemeSettings.txt"))
+            {
+                using (FileStream fs = new FileStream("../../UserSettings/UserThemeSettings.txt", FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    StreamReader reader = new StreamReader(fs);
+
+                    _setting = reader.ReadLine();
+                }
+            }
+
             Title = $"Просмотр курсов валют";
             NamePage.Text = Title;
-
+            //исправляем мифический баг ////////////////////////
+            CurrencyModel currency = new CurrencyModel("vname", "vnom", "vcurs", "vcode", "vchcode");
+            CurrencyDataGrid.Items.Add(currency);
+            CurrencyDataGrid.Items.Clear();
+            ////////////////////////////////////////////////////
             if (DateTime.Now.DayOfWeek != DayOfWeek.Monday && DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
             {
                 DateCourse.SelectedDate = DateTime.Now;
+            }
+        }
+
+        void DataGridCell_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+
+            if (_setting == "Dictionaries/DarkTheme.xaml")
+            {
+                row.Background = new SolidColorBrush(Color.FromRgb(13, 13, 44));
+                row.Foreground = new SolidColorBrush(Color.FromRgb(98, 240, 178));
             }
         }
 
@@ -60,10 +90,13 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                         foreach (XmlNode xmlNode1 in xmlNode.ChildNodes)
                         {
                             if (xmlNode1.Name == "Vname") currency.Vname = xmlNode1.InnerText.Trim();
-                            if (xmlNode1.Name == "Vnom") currency.Vnom = xmlNode1.InnerText;
-                            if (xmlNode1.Name == "Vcurs") currency.Vcurs = xmlNode1.InnerText;
-                            if (xmlNode1.Name == "Vcode") currency.Vcode = xmlNode1.InnerText;
-                            if (xmlNode1.Name == "VchCode") currency.VchCode = xmlNode1.InnerText;
+                            if (xmlNode1.Name == "Vnom") currency.Vnom = xmlNode1.InnerText.Trim();
+                            if (xmlNode1.Name == "Vcurs") {
+                                double curs = Convert.ToDouble(xmlNode1.InnerText.Trim().Replace('.',','));
+                                currency.Vcurs = string.Format("{0:f2}", Math.Round(curs, 2));
+                            } 
+                            if (xmlNode1.Name == "Vcode") currency.Vcode = xmlNode1.InnerText.Trim();
+                            if (xmlNode1.Name == "VchCode") currency.VchCode = xmlNode1.InnerText.Trim();
                         }
                         _currencies.Add(currency);
                         CurrencyDataGrid.Items.Add(currency);
@@ -74,7 +107,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 
         private void ButtonConvert_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Converter(((sender as Button).DataContext as CurrencyModel)
+            NavigationService.Navigate(new Converter(((sender as Button).DataContext as CurrencyModel)
                 , (DateTime)DateCourse.SelectedDate));
         }
 

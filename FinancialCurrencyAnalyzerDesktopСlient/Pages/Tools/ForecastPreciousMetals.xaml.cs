@@ -67,10 +67,13 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                         _MetCurs.Add(Convert.ToDouble(xmlNode.ChildNodes[2].InnerText.Trim().Replace('.',',')));
                     }
                 }
-                preciousMetal.Vcurs = _MetCurs[_MetCurs.Count - 1].ToString();
 
-                preciousMetal.VForecastCurs = Forecast(_xPoint.ToArray(), _MetCurs.ToArray()
-                        , Convert.ToDouble(_xPoint.Count()+1)).ToString();
+                double curs = Convert.ToDouble(_MetCurs[_MetCurs.Count - 1].ToString().Replace('.', ','));
+                preciousMetal.Vcurs = string.Format("{0:f2}", Math.Round(curs, 2));
+
+                preciousMetal.VForecastCurs = string.Format("{0:f2}", Math.Round(Forecast(_xPoint.ToArray(), _MetCurs.ToArray()
+                        , Convert.ToDouble(_xPoint.Count() + 1)), 2));
+
 
                 ForecastPreciousMetalsDataGrid.Items.Add(preciousMetal);
             }
@@ -112,11 +115,11 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 
             if (Convert.ToDouble(obj.Vcurs) <= Convert.ToDouble(obj.VForecastCurs))
             {
-                row.Background = Brushes.Green;
+                row.Background = Brushes.IndianRed;
             }
             else
             {
-                row.Background = Brushes.IndianRed;
+                row.Background = Brushes.Green;
             }
         }
 

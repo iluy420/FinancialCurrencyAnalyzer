@@ -18,7 +18,8 @@ using FinancialCurrencyAnalyzerDesktopСlient.Models;
 using System.Text.RegularExpressions;
 using System.Xml;
 using static System.Net.Mime.MediaTypeNames;
-
+using FinancialCurrencyAnalyzerDesktopСlient.Properties;
+using System.IO;
 
 namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
 {
@@ -31,10 +32,25 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             Title = $"Динамика изменения курсов валют";
             NamePage.Text = Title;
 
+            if (File.Exists("../../UserSettings/UserThemeSettings.txt"))
+            {
+                using (FileStream fs = new FileStream("../../UserSettings/UserThemeSettings.txt", FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    StreamReader reader = new StreamReader(fs);
+
+                    _setting = reader.ReadLine();
+                }
+            }
+            
             ChartArea chartArea = new ChartArea("Main");
             chartArea.AxisX.ScrollBar.Enabled = true;
             chartArea.AxisY.ScrollBar.Enabled = true;
             chartArea.AxisX.Interval = 1;
+            chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gold;
+            chartArea.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gold;
+            chartArea.AxisX.MajorGrid.Enabled = true;
+            chartArea.AxisY.MajorGrid.Enabled = true;
+            chartArea.BackColor = System.Drawing.Color.Gray;
             ChartPayments.ChartAreas.Add(chartArea);
 
             var currentSeries = new Series("Динамика цены")
@@ -54,9 +70,20 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                 if (_ValidCurrencies.Contains(currency.VcharCode))
                 {
                     Currency.Items.Add(currency.Vname.Trim() + "( наминал " + currency.Vnom + " )");
-                    if (currency.VcharCode == "USD") Currency.SelectedValue
-                             = currency.Vname.Trim() + "( наминал " + currency.Vnom + " )";
+                    if (currency.VcharCode == "USD") 
+                        Currency.SelectedValue = currency.Vname.Trim() + "( наминал " + currency.Vnom + " )";
                 }
+            }
+            //Currency.Foreground = new SolidColorBrush(Color.FromRgb(13, 13, 44));
+            if (_setting == "Dictionaries/DarkTheme.xaml")
+            {
+                ChartPayments.BackColor = System.Drawing.Color.FromArgb(13, 13, 44);
+                chartArea.AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(98, 240, 178);
+                chartArea.AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(98, 240, 178);
+                chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(98, 240, 178);
+                chartArea.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(98, 240, 178);
+                chartArea.AxisY.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(98, 240, 178);
+                chartArea.AxisX.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(98, 240, 178);
             }
         }
 
@@ -64,7 +91,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
         private  List<ReferenceCurrencyСodes> _currencyСodes = new List<ReferenceCurrencyСodes>();
         private static List<string> _ValidCurrencies = new List<string>();
         private ReferenceCurrencyСodes _selectCurrency { get; set; }
-
+        private string _setting { get; set; }
         /// <summary>
         /// получение курсов валюты
         /// </summary>
@@ -74,8 +101,6 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
         private void GetCursDynamicXMLImport(DateTime dateFrom, DateTime dateTo, string VcommonCode)
         {
             _currencyDynamic.Clear();
-
-
 
             СentralBankApi.ApiCB.DailyInfoSoapClient client = new СentralBankApi.ApiCB.DailyInfoSoapClient("DailyInfoSoap");
             XmlNode doc = client.GetCursDynamicXML(Convert.ToDateTime(dateFrom.ToString("yyyy-MM-ddT00:00:00"))
@@ -87,7 +112,11 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                 foreach (XmlNode xmlNode1 in xmlNode.ChildNodes)
                 {
                     if (xmlNode1.Name == "Vcode") urrencyDynamic.Vcode = xmlNode1.InnerText;
-                    if (xmlNode1.Name == "Vcurs") urrencyDynamic.Vcurs = xmlNode1.InnerText;
+                    if (xmlNode1.Name == "Vcurs")
+                    {
+                        double curs = Convert.ToDouble(xmlNode1.InnerText.Trim().Replace('.', ','));
+                        urrencyDynamic.Vcurs = string.Format("{0:f2}", Math.Round(curs, 2));
+                    }
                     if (xmlNode1.Name == "CursDate") urrencyDynamic.CursDate = xmlNode1.InnerText;
                     if (xmlNode1.Name == "Vnom") urrencyDynamic.Vnom = xmlNode1.InnerText;
                 }
@@ -142,6 +171,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             currentSeries.ChartType = SeriesChartType.Line;
             currentSeries.Points.Clear();
             currentSeries.MarkerStyle = MarkerStyle.Circle;
+            currentSeries.MarkerColor = System.Drawing.Color.Red;
             if (_currencyDynamic.Count() == 0 && VcommonCode != "")
             {
                 MessageBox.Show("Данные не найдены!");
@@ -150,7 +180,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             {
                 DataPoint point = new DataPoint();
                 DateTime date = Convert.ToDateTime(currency.CursDate);
-                point.SetValueXY(date.ToString("dd-MM-yyyy"), currency.Vcurs);
+                point.SetValueXY(date.ToString("dd-MM-yyyy"), currency.Vcurs.Replace(',','.'));
                 currentSeries.Points.Add(point);
             }
         }
@@ -163,7 +193,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
         private void Currency_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string fullName = Currency.SelectedValue.ToString();
-            int start = fullName.IndexOf("(");
+            int start = fullName.LastIndexOf("(");
             string name = fullName.Remove(start);
 
             _selectCurrency = (ReferenceCurrencyСodes)_currencyСodes

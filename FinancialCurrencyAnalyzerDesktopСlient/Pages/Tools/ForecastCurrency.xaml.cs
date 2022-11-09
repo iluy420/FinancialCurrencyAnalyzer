@@ -107,7 +107,11 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                 foreach (XmlNode xmlNode1 in xmlNode.ChildNodes)
                 {
                     if (xmlNode1.Name == "Vcode") urrencyDynamic.Vcode = xmlNode1.InnerText;
-                    if (xmlNode1.Name == "Vcurs") urrencyDynamic.Vcurs = xmlNode1.InnerText;
+                    if (xmlNode1.Name == "Vcurs")
+                    {
+                        double curs = Convert.ToDouble(xmlNode1.InnerText.Trim().Replace('.', ','));
+                        urrencyDynamic.Vcurs = string.Format("{0:f2}", Math.Round(curs, 2));
+                    }
                     if (xmlNode1.Name == "CursDate") urrencyDynamic.CursDate = xmlNode1.InnerText;
                     if (xmlNode1.Name == "Vnom") urrencyDynamic.Vnom = xmlNode1.InnerText;
                 }
@@ -146,8 +150,8 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
                     row.Vname = currency.Vname;
                     row.Vcurs = _currencyСourses.ElementAt(_currencyСourses.Count() - 1).ToString();
 
-                    var forecast = Forecast(_xPoint.ToArray(), _currencyСourses.ToArray()
-                        , Convert.ToDouble(_xPoint.Count() + 1));
+                    var forecast = string.Format("{0:f2}", Math.Round(Forecast(_xPoint.ToArray(), _currencyСourses.ToArray()
+                        , Convert.ToDouble(_xPoint.Count() + 1)), 2));
 
                     row.VForecastCurs = forecast.ToString();
                     
@@ -190,11 +194,11 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
            
             if (Convert.ToDouble(obj.Vcurs) <= Convert.ToDouble(obj.VForecastCurs))
             {
-                row.Background = Brushes.Green;
+                row.Background = Brushes.IndianRed;
             }
             else
             {
-                row.Background = Brushes.IndianRed;
+                row.Background = Brushes.Green;
             }
         }
 

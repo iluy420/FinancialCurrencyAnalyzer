@@ -61,7 +61,8 @@
             <Label Target="{Binding ElementName=RememberData}"
                Content="Запомнить логин и пароль?"/>
             <CheckBox x:Name="RememberData"
-                      VerticalAlignment="Center"/>
+                      VerticalAlignment="Center">
+            </CheckBox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
@@ -79,13 +80,16 @@
                     Grid.Column="0"
                     HorizontalAlignment="Stretch"
                     Click="LoginButton_Click"
-                    ToolTip ="Войти"/>
+                    ToolTip ="Войти"
+                    Margin="0,0,10,0"/>
 
                 <Button x:Name="RegistrationButton"
                     Content="Зарегистрироваться"
                     HorizontalAlignment="Stretch"
                     ToolTip ="Зарегистрироваться в FinancialCurrencyAnalyzer"
-                    Grid.Column="1" Click="RegistrationButton_Click"/>
+                    Grid.Column="1" Click="RegistrationButton_Click"
+                    Margin="10,0,0,0"
+                    />
             </Grid>
            
             
