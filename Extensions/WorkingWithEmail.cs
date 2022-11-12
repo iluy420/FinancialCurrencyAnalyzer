@@ -47,8 +47,14 @@ namespace Extensions
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 Credentials = new NetworkCredential(ConstsEmail.MAIL_ADDRESS, ConstsEmail.MAIL_PASSWORD)
             };
-
-            smtpClient.Send(message);
+            try
+            {
+                smtpClient.Send(message);
+            }
+            catch
+            {
+                //почтовый ящик не доступен
+            }
         }
 
         #endregion

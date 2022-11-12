@@ -82,7 +82,14 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
                 }
             }
 
-            if (isRememberData == true) {
+            RememberDataLogin(isRememberData, login, password);
+            return true;
+        }
+
+        private void RememberDataLogin(bool isRememberData, string login, string password)
+        {
+            if (isRememberData == true)
+            {
                 //запоминаем логин и пароль пользователя на компе 
                 using (FileStream fs = new FileStream("../../UserSettings/UserLoginSettings.json", FileMode.OpenOrCreate, FileAccess.Write))
                 {
@@ -94,13 +101,12 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
                     writer.WriteLine(json);
 
                     writer.Close();
-                } 
+                }
             }
             else
             {
                 File.Delete("../../UserSettings/UserLoginSettings.json");
             }
-            return true;
         }
     }
 }
