@@ -72,6 +72,9 @@
                                   Header="Получение ежедневных курсов валют"
                                   Click="SubscriptionForecastPriceCurrency_Click"/>
                     </MenuItem>
+                    <MenuItem x:Name="BtnHelp"
+                          Header="Справка" 
+                          Click="BtnHelp_Click"/>
                 </MenuItem>
                 <MenuItem x:Name="Account"
                           Header="Аккаунт" 

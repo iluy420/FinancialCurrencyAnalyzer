@@ -232,6 +232,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Help\Help.chm" />
+    <None Include="Help\Index.hhk" />
+    <None Include="Help\TOC.hhc" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -271,6 +274,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AppPictures\icon-currency.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Help\img\DarkTheme.png" />
+    <Resource Include="Help\img\DarkThemeRez.png" />
+    <Resource Include="Help\img\NoComfirmetion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Help\AboutTheProgram.html" />
+    <Content Include="Help\HowToConfirmEmail.html" />
+    <Content Include="Help\СhangingTheColorTheme.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

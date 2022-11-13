@@ -6,6 +6,7 @@ using FinancialCurrencyAnalyzerDesktopСlient.Properties;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -160,6 +161,11 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.NavigationService.Navigate(new Login());
+        }
+
+        private void BtnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(@"..\..\Help\Help.chm");
         }
     }
 }
