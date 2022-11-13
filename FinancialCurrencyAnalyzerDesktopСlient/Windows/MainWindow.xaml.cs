@@ -40,6 +40,10 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Windows
 
                     setting = reader.ReadLine();
                 }
+                if (setting != "Dictionaries/DarkTheme.xaml")
+                {
+                    setting = "Dictionaries/LightTheme.xaml";
+                }
             }
             else
             {

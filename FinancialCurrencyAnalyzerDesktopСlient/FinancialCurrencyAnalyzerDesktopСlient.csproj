@@ -266,9 +266,7 @@
       <Name>СentralBankApi</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserSettings\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
@@ -284,6 +282,7 @@
     <Content Include="Help\AboutTheProgram.html" />
     <Content Include="Help\HowToConfirmEmail.html" />
     <Content Include="Help\СhangingTheColorTheme.html" />
+    <Resource Include="UserSettings\UserThemeSettings.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
