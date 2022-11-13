@@ -105,7 +105,10 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.RegistrationAndLogin
             }
             else
             {
-                File.Delete("../../UserSettings/UserLoginSettings.json");
+                if (File.Exists("../../UserSettings/UserLoginSettings.json"))
+                {
+                    File.Delete("../../UserSettings/UserLoginSettings.json");
+                }
             }
         }
     }
