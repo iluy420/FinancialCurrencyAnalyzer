@@ -17,8 +17,6 @@ namespace DataBase.Contexts
 
         public DbSet<Metal> Metals { get; set; }
 
-        //public DbSet<SubscriptionForecastPriceCurrency> SubscriptionForecastPriceCurrencys { get; set; }
-
         public DbSet<UserCurrency> UserCurrencys { get; set; }
 
         public DbSet<UserMetals> UserMetals { get; set; }

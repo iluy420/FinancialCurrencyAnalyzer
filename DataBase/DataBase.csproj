@@ -56,7 +56,6 @@
     <Compile Include="Contexts\DataBaseContext.cs" />
     <Compile Include="Core\Enums\EmailDomainEnum.cs" />
     <Compile Include="Core\Models\Metal.cs" />
-    <Compile Include="Core\Models\SubscriptionCurrency.cs" />
     <Compile Include="Core\Models\User.cs" />
     <Compile Include="Core\Models\UserCurrency.cs" />
     <Compile Include="Core\Models\UserMetals.cs" />
