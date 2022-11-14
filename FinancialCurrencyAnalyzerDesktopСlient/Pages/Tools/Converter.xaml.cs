@@ -43,7 +43,7 @@ namespace FinancialCurrencyAnalyzerDesktopСlient.Pages.Tools
             _currentCurrency = currentCurrency;
             _date = date;
 
-            Title = $"Конвентер \"Российский рубль\" к \"{_currentCurrency.Vname}\"";
+            Title = $"Конвертер \"Российский рубль\" к \"{_currentCurrency.Vname}\"";
             NamePage.Text = Title;
             DateCourse.Text = date.ToString("dd MMMM yyyy");
 

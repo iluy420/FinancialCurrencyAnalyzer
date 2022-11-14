@@ -56,7 +56,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Name="ButtonConvert" 
-                                    Content="К конвентору" 
+                                    Content="К конвертору" 
                                     Click="ButtonConvert_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
